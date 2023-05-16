@@ -7,7 +7,7 @@ key_size = 16  # 128 bits
 key = Fernet.generate_key()
 key= key[:key_size]
 
-# Read the contents of the file to be encrypted
+# Read the contents of the file to be encryptm,n,mn,n,mn,mn,edmk
 with open('file.txt', 'rb') as f:
     data = f.read()
 
