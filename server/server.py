@@ -1,6 +1,6 @@
 import socket
 
-SERVER_IP = '10.1.0.4'
+SERVER_IP = 'localhost'
 SERVER_PORT = 5678
 
 with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as s:
@@ -15,3 +15,10 @@ with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as s:
             data =  conn.recv(1024)
             print(data)
             break
+
+# save the received key in key.key file
+with open('key.key', 'wb') as f:
+    f.write(data)
+# end the connection
+
+
