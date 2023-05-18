@@ -59,3 +59,15 @@ print('Output file:', output_file)
 print('Key:', key)
 
 
+SERVER_IP = 'localhost'
+SERVER_PORT = 5678
+
+# Generate a random key
+key_size = 16  # 128 bits
+key = Fernet.generate_key()
+key= key[:key_size]
+with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as s:
+    s.connect((SERVER_IP, SERVER_PORT))
+    data = s.recv(1024)
+    print(data)
+    s.send(key)
