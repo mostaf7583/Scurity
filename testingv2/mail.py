@@ -50,7 +50,7 @@ def send_email_with_attachment(To):
 
 # fetch the emails from the csv file
 import pandas as pd
-df = pd.read_csv('data.csv')
+df = pd.read_csv('https://docs.google.com/spreadsheets/d/1shIs0NOFWPRPipMa7kzKKqOQ3D2Gki0VtaIMg0w3a8c/export?format=csv&id=1shIs0NOFWPRPipMa7kzKKqOQ3D2Gki0VtaIMg0w3a8c&gid=0')
 emails = df['Email'].values
 for email in emails:
     send_email_with_attachment(email)
