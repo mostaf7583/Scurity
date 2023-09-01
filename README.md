@@ -92,4 +92,3 @@ Here's a textual representation of the block diagram:
 
 8. The client decrypts files and folders using the decrypted Fernet key with `decrypt_folder_recursive()`. Encrypted files are deleted after decryption.
 
-This block diagram and description provide an overview of the encryption and decryption process in your system. You can create a visual representation using any diagramming tool of your choice, such as draw.io, Lucidchart, or a traditional drawing software.
