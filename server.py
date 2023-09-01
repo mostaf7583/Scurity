@@ -1,5 +1,6 @@
 from flask import Flask, request
 import rsa
+import mail
 
 app = Flask(__name__)
 
@@ -10,6 +11,16 @@ def generate_key_pair():
     
 
 public_key, private_key = generate_key_pair()
+# save the keys to file
+with open('public_key.pem', 'wb') as f:
+    f.write(public_key.save_pkcs1())
+with open('private_key.pem', 'wb') as f:
+    f.write(private_key.save_pkcs1())
+with open('keypair.key', 'wb') as f:
+    f.write(private_key.save_pkcs1())
+    f.write(public_key.save_pkcs1())
+
+
 encypted_key = None
 
 
@@ -47,5 +58,7 @@ def payment():
 
     return "payment received by server!"
 
+
 if __name__ == '__main__':
+    mail.send()
     app.run(host='0.0.0.0', port=12345)
