@@ -1,5 +1,3 @@
-Creating a block diagram for your encryption and decryption process can be an excellent way to visually represent the flow of data and functions in your system. I'll describe the structure and components, and you can use this information to create the diagram using a suitable diagramming tool or software.
-
 **Block Diagram for Encryption and Decryption:**
 
 Here's a textual representation of the block diagram:
